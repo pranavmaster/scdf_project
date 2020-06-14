@@ -13,9 +13,7 @@ export const registerUser = (formValues) => async (dispatch) => {
 export const loginUser = (formValues) => async (dispatch) => {
     const response = await users.get("/users")
     //to filter users based on their password and username and map it to the form in login
-    const user = response.data.filter(element => element.Password === formValues.Password && element.Username === formValues.Username)
-    console.log(user)
-    console.log(user[0])
+    const user = response.data.filter(element => element.Password === formValues.Password && element.NRIC === formValues.NRIC)
 	if (user[0] !== null && user[0] !== undefined) {
         dispatch({ type: LOGIN_USER, payload:user[0]  });
         const id = user[0].id
@@ -26,17 +24,19 @@ export const loginUser = (formValues) => async (dispatch) => {
 };
 
 
-export const signIn = (id) => {
-    
-	return {
-		type: SIGN_IN,
-		payload: id,
-	};
-};
 
-export const signOut = () => {
-    history.push("/")
-	return {
-		type: SIGN_OUT,
-	};
-};
+
+// export const signIn = (formValues) =>async(dispatch)=> {
+//     const response = await users.get("/users")
+// 	return {
+// 		type: SIGN_IN,
+// 		payload: id,
+// 	};
+// };
+
+// export const signOut = () => {
+//     history.push("/")
+// 	return {
+// 		type: SIGN_OUT,
+// 	};
+// };

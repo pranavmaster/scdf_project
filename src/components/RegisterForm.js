@@ -1,7 +1,7 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 
-class UserForm extends React.Component {
+class RegisterForm extends React.Component {
 	renderError({ error, touched }) {
 		if (touched && error) {
 			return (
@@ -33,17 +33,30 @@ class UserForm extends React.Component {
 				onSubmit={this.props.handleSubmit(this.onSubmit)}
 				className="ui form error"
 			>
+				<Field name="NRIC" component={this.renderInput} label="Enter NRIC" />
+                <Field name="FullName" component={this.renderInput} label="Enter Full Name" />
 				<Field
-					name="NRIC"
+					name="Address"
 					component={this.renderInput}
-					label="Enter NRIC"
+					label="Enter Address"
 				/>
+				<label>If you are older than 60 please select old</label>
+				<div>
+					<label>
+						<Field name="sex" component="input" type="radio" value="Old" /> Old
+					</label>
+					<label>
+						<Field name="sex" component="input" type="radio" value="Young" />{" "}
+						Young
+					</label>
+				</div>
+
 				<Field
 					name="Password"
 					component={this.renderInput}
 					label="Enter Password"
 				/>
-				<button className="ui button primary">Log in with Singpass</button>
+				<button className="ui button primary">Register</button>
 			</form>
 		);
 	}
@@ -53,6 +66,14 @@ const validate = (formValues) => {
 	const errors = {};
 	if (!formValues.NRIC) {
 		errors.NRIC = "You must enter a NRIC";
+		//only ran if user did not enter title
+    }
+    if (!formValues.FullName) {
+		errors.FullName = "You must enter your Full Name";
+		//only ran if user did not enter title
+	}
+	if (!formValues.Address) {
+		errors.user = "You must enter a Address";
 		//only ran if user did not enter title
 	}
 
@@ -66,4 +87,4 @@ const validate = (formValues) => {
 export default reduxForm({
 	form: "userForm",
 	validate,
-})(UserForm);
+})(RegisterForm);

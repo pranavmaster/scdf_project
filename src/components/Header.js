@@ -5,8 +5,11 @@ import { Link } from "react-router-dom";
 const Header = () => {
 	return (
 		<div className="ui secondary pointing menu">
-			<Link to="/" className="item">
+			<Link to="/main/:id" className="item">
 				Main
+			</Link>
+			<Link to='/main/alert/:id' className = "item">
+				Alert
 			</Link>
 			<div className="right menu">
 				<Link to= "/" className="item">

@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { registerUser } from "../actions";
-import UserForm from "./Form";
+import RegisterForm from "./RegisterForm";
 
 class RegisterPage extends React.Component {
 	onSubmit = (formValues) => {
@@ -11,8 +11,8 @@ class RegisterPage extends React.Component {
 	render() {
 		return (
 			<div>
-				<h3>Create A User</h3>
-				<UserForm onSubmit={this.onSubmit} />
+				<h3>Register Yourself As User</h3>
+				<RegisterForm onSubmit={this.onSubmit} />
 			</div>
 		);
 	}
